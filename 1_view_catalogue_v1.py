@@ -1,3 +1,5 @@
+"""View_catalogue_V1
+This is showing the user all the monsters with their strength, speed, stealth and cunning"""
 monster_cards = {
     "Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
     "Vexscream": {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
@@ -10,4 +12,6 @@ monster_cards = {
     "Froststep": {"Strength": 14, "Speed": 14, "Stealth": 17, "Cunning": 4},
     "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2},
 }
+
+
 print(monster_cards)
