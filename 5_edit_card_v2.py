@@ -17,20 +17,5 @@ monster_cards = {
 }
 
 
-card_name = easygui.enterbox("Enter card name", "Edit Card")
-
-
-card_details = ""
-card_defaults = [card_name]
-for stat in list(monster_cards[card_name].keys()):
-    card_defaults.append(monster_cards[card_name][stat])
-
-enter_card_details = easygui.multenterbox("Enter card details", "Edit Card",
-                                     ["Card Name", "Strength", "Speed", "Stealth", "Cunning"], card_defaults)
-
-card_details = {"Strength": int(enter_card_details[1]), "Speed": int(enter_card_details[2]),
-                "Stealth": int(enter_card_details[3]), "Cunning": int(enter_card_details[4])}
-
-monster_cards[enter_card_details[0]] = card_details
 
 

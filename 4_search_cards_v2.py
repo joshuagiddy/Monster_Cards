@@ -17,7 +17,7 @@ monster_cards = {
 
 
 # Function for card details
-def card_details():
+def view_catalogue():
     card_details_formatted = ""
     # Using for loops to get input for new card details
     for card in monster_cards:

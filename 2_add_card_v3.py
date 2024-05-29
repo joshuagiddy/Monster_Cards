@@ -25,6 +25,11 @@ def add_card():
     card_details = ""
     enter_card_details = easygui.multenterbox("Enter card details", "Add Card",
                                          ["Card Name", "Strength", "Speed", "Stealth", "Cunning"])
+
+    # If user cancels input
+    if enter_card_details is None:
+        easygui.msgbox("Card not added", "Add Card")
+        return
     # Try statement to deal with invalid input
     try:
         card_details = {"Strength": int(enter_card_details[1]), "Speed": int(enter_card_details[2]),

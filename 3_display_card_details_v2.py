@@ -1,5 +1,5 @@
-"""3_display_card_details_v1
-This is now allowing the user to ask if they won't to edit the card and to check if the card details are correct."""
+"""3_display_card_details_v2
+This is now allowing the user to ask if they want to edit the card and to check if the card details are correct."""
 
 
 import easygui
@@ -52,16 +52,19 @@ def add_card():
 
 
 def display_card_details(card_name):
+    # Displaying the card details
     card_details_formatted = ""
+    # Using for loops to format the card details
     card_details_formatted += f"{card_name}:\n"
     for key, value in monster_cards[card_name].items():
         card_details_formatted += f"{key}: {value}\n"
+        # Asking if card details are correct
     choice = easygui.buttonbox(f"Are these card details correct?\n"
                           f"{card_details_formatted}", "", ["Yes", "No"])
     if choice == "Yes":
         pass
     elif choice == "No":
-        edit_card(card_name)
+        display_card_details(card_name)
 
 def main():
     while True:

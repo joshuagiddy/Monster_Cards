@@ -30,9 +30,10 @@ if enter_card_details is not None and all(enter_card_details[1:]) and all(value.
                     "Stealth": int(enter_card_details[3]), "Cunning": int(enter_card_details[4])}
     # Adding the new card to the dictionary
     monster_cards[enter_card_details[0]] = card_details
+    easygui.msgbox("Card added successfully!")
 else:
     # Error message if input is invalid or incomplete
-    easygui.msgbox("Invalid input or incomplete fields. Card not added.")
+    easygui.msgbox("Card not added.")
 
 
 
