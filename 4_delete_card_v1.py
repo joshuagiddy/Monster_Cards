@@ -1,8 +1,8 @@
-"""5_edit_card_v1
-This version is now allowing the user to edit the card details. It asks the user which monster card it would like to edit
-and it now allows the user to edit the card details. Does not save any card details or anything."""
+"""4_delete_card_v1
+This is a function that allows the user to select a monster out of the catalogue and delete it."""
 import easygui
 
+# Monster Cards Catalogue
 monster_cards = {
     "Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
     "Vexscream": {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
@@ -16,6 +16,12 @@ monster_cards = {
     "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2},
 }
 
+# Function to delete a card
+def delete_card(card_to_delete):
+    # Asking the user which card they would like to delete out of the Monsters Cards Catalogue
+    card_to_delete = easygui.buttonbox("Which card would you like to delete?", "Delete Card", list(monster_cards.keys()))
+    # Deleting the card
+    del monster_cards[card_to_delete]
+    easygui.msgbox(f"{card_to_delete} has been deleted", "Delete Card")
 
-
-
+delete_card(monster_cards)

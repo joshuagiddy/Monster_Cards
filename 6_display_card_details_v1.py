@@ -1,4 +1,4 @@
-"""3_display_card_details_v1
+"""6_display_card_details_v1
 This function is allowing the card once added to be formatted."""
 # Dictionary containing monster cards and their attributes
 import easygui
@@ -49,18 +49,22 @@ def add_card():
     # Adding the new card to the dictionary
     monster_cards[enter_card_details[0]] = card_details
 
-
+# Display card details function
 def display_card_details(card_name):
+    # formatting the cards
     card_details_formatted = ""
     card_details_formatted += f"{card_name}:\n"
+    # Using for loops to format the card details
     for key, value in monster_cards[card_name].items():
         card_details_formatted += f"{key}: {value}\n"
-
+#Main program
 def main():
+    # Main Program
     while True:
         choice = easygui.buttonbox("Welcome to the Monster Cards catalogue\n"
                               "Please select an option:", "Monster Cards",
                               ["Add Card", "View Catalogue", "Exit"])
+        # If statement for add card and view catalogue
         if choice == "Add Card":
             add_card()
         elif choice == "View Catalogue":

@@ -1,4 +1,4 @@
-"""3_display_card_details_v2
+"""6_display_card_details_v2
 This is now allowing the user to ask if they want to edit the card and to check if the card details are correct."""
 
 
@@ -28,7 +28,7 @@ def card_details():
         card_details_formatted += "\n"
     # Displaying the card details
     easygui.msgbox(card_details_formatted,)
-    print(card_details_formatted)
+   
 
 
 
@@ -49,7 +49,20 @@ def add_card():
 
     # Adding the new card to the dictionary
     monster_cards[enter_card_details[0]] = card_details
+    display_card_details(enter_card_details[0])
+def edit_card(card_name):
+    card_details = ""
+    card_defaults = [card_name]
+    for stat in list(monster_cards[card_name].keys()):
+        card_defaults.append(monster_cards[card_name][stat])
+    enter_card_details = easygui.multenterbox("Enter card details: : (Out of the Monster Cards Catalogue)", "Edit Card",
+                                         ["Card Name", "Strength", "Speed", "Stealth", "Cunning"], card_defaults)
 
+    # Assuming valid input for simplicity, no try-except block
+    card_details = {"Strength": int(enter_card_details[1]), "Speed": int(enter_card_details[2]),
+                    "Stealth": int(enter_card_details[3]), "Cunning": int(enter_card_details[4])}
+
+    monster_cards[enter_card_details[0]] = card_details
 
 def display_card_details(card_name):
     # Displaying the card details
@@ -61,10 +74,11 @@ def display_card_details(card_name):
         # Asking if card details are correct
     choice = easygui.buttonbox(f"Are these card details correct?\n"
                           f"{card_details_formatted}", "", ["Yes", "No"])
+    # if statment to check if card details are correct
     if choice == "Yes":
         pass
     elif choice == "No":
-        display_card_details(card_name)
+        edit_card(card_name)
 
 def main():
     while True:

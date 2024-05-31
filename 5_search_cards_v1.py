@@ -1,4 +1,4 @@
-"""3_search_Cards_v1
+"""5_search_Cards_v1
 This version is just testing, asking the user which out of the monsters they would like to see.
 it should display all the details of the card once selected."""
 import easygui
@@ -18,7 +18,7 @@ monster_cards = {
 
 
 # Function for card details
-def card_details():
+def search_cards():
     card_details_formatted = ""
     # Using for loops to get input for new card details
     for card in monster_cards:
@@ -31,6 +31,6 @@ def card_details():
     easygui.msgbox(card_details_formatted, )
     print(card_details_formatted)
 
-
+# Main program
 card = easygui.choicebox("Select card", "Search Cards", list(monster_cards.keys()))
 easygui.msgbox(monster_cards[card])

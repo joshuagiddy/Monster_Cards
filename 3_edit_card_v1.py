@@ -1,6 +1,7 @@
-"""5_edit_card_v1
+"""3_edit_card_v1
 This version is now allowing the user to edit the card details. It asks the user which monster card it would like to edit
-and it now allows the user to edit the card details. Does not save any card details or anything."""
+out of the Monster Cards Catalogue,and it now allows the user to edit the card details. Does not save any card details
+or anything. It will not have an error message if there is a invalid input."""
 import easygui
 
 monster_cards = {
@@ -16,21 +17,22 @@ monster_cards = {
     "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2},
 }
 
+# Asking the card name to delete out of the Monster Card Catalogue
+card_name = easygui.enterbox("Enter card name: (Out of the Monster Cards Catalogue)", "Edit Card")
 
-card_name = easygui.enterbox("Enter card name", "Edit Card")
-
-
+# Card details which will store the answer inputted by the user
 card_details = ""
 card_defaults = [card_name]
+# For loop to input the card details
 for stat in list(monster_cards[card_name].keys()):
     card_defaults.append(monster_cards[card_name][stat])
-
+# The main program
 enter_card_details = easygui.multenterbox("Enter card details", "Edit Card",
                                      ["Card Name", "Strength", "Speed", "Stealth", "Cunning"], card_defaults)
-
+# Storing the answer inputted by the user
 card_details = {"Strength": int(enter_card_details[1]), "Speed": int(enter_card_details[2]),
                 "Stealth": int(enter_card_details[3]), "Cunning": int(enter_card_details[4])}
-
+# Adding the new updated card to the dictionary
 monster_cards[enter_card_details[0]] = card_details
 
 

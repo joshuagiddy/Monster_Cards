@@ -1,5 +1,6 @@
 """View_catalogue_V1
 This is showing the user all the monsters with their strength, speed, stealth and cunning"""
+# Monster Card Catalogue
 monster_cards = {
     "Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
     "Vexscream": {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},

@@ -1,4 +1,4 @@
-"""4_Search_Cards_v2
+"""5_Search_Cards_v2
 This version is now formatting the output of the monster cards detail, it should space it clearly."""
 import easygui
 
@@ -30,13 +30,17 @@ def view_catalogue():
     easygui.msgbox(card_details_formatted, )
     print(card_details_formatted)
 
-
+# Search Card Function
 def search_cards():
+    # Main program
     card = easygui.choicebox("Select card", "Search Cards", list(monster_cards.keys()))
+    # formatting the card details
     card_details_formatted = ""
     card_details_formatted += f"{card}:\n"
+    # Using for loops to format the card details
     for key, value in monster_cards[card].items():
         card_details_formatted += f"{key}: {value}\n"
+    # Displaying the card details once formatted
     easygui.msgbox(card_details_formatted)
 
 
