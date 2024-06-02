@@ -16,6 +16,8 @@ monster_cards = {
 }
 
 
+
+
 def add_card():
     # Card details which will be inputted by user
     card_details = ""
@@ -33,20 +35,26 @@ def add_card():
     except ValueError:
         eg.msgbox("Invalid input, Strength, Speed, Stealth and Cunning must be integers. Card not added.",
                        "Add Card")
-
+        add_card()
 
     # Adding the new card to the dictionary
     monster_cards[enter_card_details[0]] = card_details
-    # Displaying the new card details
-    display_card_details(enter_card_details[0])
+    eg.msgbox("Card added successfully!", "Add Card")
+
 
 
 def delete_card(card_to_delete):
     # Asking the user which card they would like to delete out of the Monsters Cards Catalogue
     card_to_delete = eg.buttonbox("Which card would you like to delete?", "Delete Card", list(monster_cards.keys()))
-    # Deleting the card
-    del monster_cards[card_to_delete]
-    eg.msgbox(f"{card_to_delete} has been deleted", "Delete Card")
+
+    # Check if the selected card exists before deleting
+    if card_to_delete in monster_cards:
+        # Deleting the card
+        del monster_cards[card_to_delete]
+        eg.msgbox(f"{card_to_delete} has been deleted", "Delete Card")
+    else:
+        # Display error message if the selected card does not exist
+        eg.msgbox(f"Error: Please select a card to delete", "Delete Card")
 
 
 
@@ -63,25 +71,36 @@ def view_catalogue():
     eg.msgbox(card_details_formatted,)
 
 def search_cards():
-    # Main program
-    card = eg.choicebox("Select card", "Search Cards", list(monster_cards.keys()))
-    # formatting the card details
-    card_details_formatted = ""
-    card_details_formatted += f"{card}:\n"
-    # Using for loops to format the card details
-    for key, value in monster_cards[card].items():
-        card_details_formatted += f"{key}: {value}\n"
-    # Asking the user if they would like to Edit or Delete the card
-    choice = eg.choicebox(card_details_formatted, TITLE, ["Delete Card", "Edit Card", "Exit"])
-    # If delete card selected, it will run the delete card function
-    if choice == "Delete Card":
-        delete_card(card)
-    # If the edit card is selected, it will run the edit card function
-    elif choice == "Edit Card":
-        edit_card(card)
-    # Exiting function
-    elif choice == "Exit":
-        pass
+    try:
+        # Main program
+        card = eg.choicebox("Select card", "Search Cards", list(monster_cards.keys()))
+        if card is None:
+            raise ValueError("Operation cancelled.")
+
+        # formatting the card details
+        card_details_formatted = ""
+        card_details_formatted += f"{card}:\n"
+        # Using for loops to format the card details
+        for key, value in monster_cards[card].items():
+            card_details_formatted += f"{key}: {value}\n"
+        # Asking the user if they would like to Edit or Delete the card
+        choice = eg.choicebox(card_details_formatted, "Search Cards", ["Delete Card", "Edit Card", "Exit"])
+        # If delete card selected, it will run the delete card function
+        if choice == "Delete Card":
+            delete_card(card)
+        # If the edit card is selected, it will run the edit card function
+        elif choice == "Edit Card":
+            edit_card(card)
+        # Exiting function
+        elif choice == "Exit":
+            pass
+    except ValueError:
+        eg.msgbox("Operation cancelled.", "Search Cards")
+
+
+
+
+
 
 def edit_card(card_name):
     # This is where the card details will be stored

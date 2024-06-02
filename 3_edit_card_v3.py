@@ -58,6 +58,7 @@ def edit_card(card_name):
         add_card()
 # Output the new card details
     monster_cards[enter_card_details[0]] = card_details
+    easygui.msgbox("Card edited successfully!", "Edit Card")
 
 
 edit_card("Stoneling")
