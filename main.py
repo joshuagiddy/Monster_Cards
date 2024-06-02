@@ -1,6 +1,5 @@
+"""Main program for Monster Card Catalogue"""
 import easygui as eg
-
-TITLE = "Monster Cards Catalogue"
 
 monster_cards = {
     "Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
@@ -14,8 +13,6 @@ monster_cards = {
     "Froststep": {"Strength": 14, "Speed": 14, "Stealth": 17, "Cunning": 4},
     "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2},
 }
-
-
 
 
 def add_card():
@@ -34,7 +31,7 @@ def add_card():
                         "Stealth": int(enter_card_details[3]), "Cunning": int(enter_card_details[4])}
     except ValueError:
         eg.msgbox("Invalid input, Strength, Speed, Stealth and Cunning must be integers. Card not added.",
-                       "Add Card")
+                  "Add Card")
         add_card()
 
     # Adding the new card to the dictionary
@@ -42,8 +39,7 @@ def add_card():
     eg.msgbox("Card added successfully!", "Add Card")
 
 
-
-def delete_card(card_to_delete):
+def delete_card():
     # Asking the user which card they would like to delete out of the Monsters Cards Catalogue
     card_to_delete = eg.buttonbox("Which card would you like to delete?", "Delete Card", list(monster_cards.keys()))
 
@@ -57,7 +53,6 @@ def delete_card(card_to_delete):
         eg.msgbox(f"Error: Please select a card to delete", "Delete Card")
 
 
-
 def view_catalogue():
     card_details_formatted = ""
     # Using for loops to get input for new card details
@@ -68,7 +63,8 @@ def view_catalogue():
             card_details_formatted += f"{key}: {value}\n"
         card_details_formatted += "\n"
     # Displaying the card details
-    eg.msgbox(card_details_formatted,)
+    eg.msgbox(card_details_formatted, )
+
 
 def search_cards():
     try:
@@ -87,7 +83,7 @@ def search_cards():
         choice = eg.choicebox(card_details_formatted, "Search Cards", ["Delete Card", "Edit Card", "Exit"])
         # If delete card selected, it will run the delete card function
         if choice == "Delete Card":
-            delete_card(card)
+            delete_card()
         # If the edit card is selected, it will run the edit card function
         elif choice == "Edit Card":
             edit_card(card)
@@ -96,10 +92,6 @@ def search_cards():
             pass
     except ValueError:
         eg.msgbox("Operation cancelled.", "Search Cards")
-
-
-
-
 
 
 def edit_card(card_name):
@@ -112,14 +104,14 @@ def edit_card(card_name):
     # Ask user what new card details they want to edit
     enter_card_details = eg.multenterbox("Enter card details", "Edit Card",
                                          ["Card Name", "Strength", "Speed", "Stealth", "Cunning"], card_defaults)
-# Try statement to deal with invalid input
+    # Try statement to deal with invalid input
     try:
         card_details = {"Strength": int(enter_card_details[1]), "Speed": int(enter_card_details[2]),
                         "Stealth": int(enter_card_details[3]), "Cunning": int(enter_card_details[4])}
     except ValueError:
-        eg.msgbox("Invalid input, Strength, Speed, Stealth and Cunning must be integers. Card not added.","Edit Card")
+        eg.msgbox("Invalid input, Strength, Speed, Stealth and Cunning must be integers. Card not added.", "Edit Card")
         add_card()
-# Output the new card details
+    # Output the new card details
     monster_cards[enter_card_details[0]] = card_details
 
 
@@ -133,11 +125,12 @@ def display_card_details(card_name):
         # Asking if card details are correct
     choice = eg.buttonbox(f"Are these card details correct?\n"
                           f"{card_details_formatted}", "", ["Yes", "No"])
-    # if statment to check if card details are correct
+    # if statement to check if card details are correct
     if choice == "Yes":
         pass
     elif choice == "No":
         edit_card(card_name)
+
 
 # Main Program
 def main():
